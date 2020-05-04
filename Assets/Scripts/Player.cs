@@ -17,8 +17,13 @@ public class Player : MonoBehaviour {
 
     private void Start () {
         initLocation = transform.position;
-        FindObjectOfType<CameraFollow> ().SetTarget (this);
+
         rb = GetComponent<Rigidbody2D> ();
+        rb.freezeRotation = true;
+    }
+
+    private void OnEnable () {
+        FindObjectOfType<CameraFollow> ().SetTarget (this);
     }
 
     private void Update () {
@@ -33,17 +38,26 @@ public class Player : MonoBehaviour {
             _vel.x = 2 * moveSpeed;
             rb.velocity = _vel;
         }
+        if(rb.velocity.y < 0){
+            rb.gravityScale = 2.5f;
+        } else{
+            rb.gravityScale = 1;
+        }
     }
 
     private void OnCollisionEnter2D (Collision2D other) {
         if (other.collider.gameObject.tag == "Wall") {
             hit = true;
             GenerateSplat ();
+
             rb.freezeRotation = false;
             rb.AddForce (new Vector2 (-3, 1.25f), ForceMode2D.Impulse);
+
+            GameObject _player_clone = Instantiate (player_prefab, initLocation, Quaternion.Euler (Vector3.zero));
+            _player_clone.name = "Player";
+            Destroy (gameObject);
+
             this.enabled = false;
-            Instantiate (player_prefab, initLocation, Quaternion.identity);
-            Destroy (gameObject, 2f);
         }
     }
 

@@ -9,7 +9,6 @@ public class CameraFollow : MonoBehaviour {
     public void SetTarget (Player _target) {
         target = null;
         target = _target;
-        Debug.Log(target.name);
     }
 
     private void LateUpdate () {
