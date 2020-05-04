@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    [SerializeField] GameObject player_prefab;
+    Vector2 initLocation;
+
     [SerializeField] GameObject[] splats;
     [SerializeField] float jumpForce;
     [SerializeField] float moveSpeed;
 
     Rigidbody2D rb;
 
+    bool hit = false;
+
     private void Start () {
+        initLocation = transform.position;
+        FindObjectOfType<CameraFollow> ().SetTarget (this);
         rb = GetComponent<Rigidbody2D> ();
     }
 
@@ -21,15 +28,22 @@ public class Player : MonoBehaviour {
     }
 
     private void FixedUpdate () {
-        rb.velocity = new Vector2 (1, 0) * moveSpeed;
+        if (!hit) {
+            Vector2 _vel = rb.velocity;
+            _vel.x = 2 * moveSpeed;
+            rb.velocity = _vel;
+        }
     }
 
     private void OnCollisionEnter2D (Collision2D other) {
         if (other.collider.gameObject.tag == "Wall") {
+            hit = true;
             GenerateSplat ();
             rb.freezeRotation = false;
-            rb.AddForce (new Vector2 (-3, 1.25f) * 3, ForceMode2D.Impulse);
+            rb.AddForce (new Vector2 (-3, 1.25f), ForceMode2D.Impulse);
             this.enabled = false;
+            Instantiate (player_prefab, initLocation, Quaternion.identity);
+            Destroy (gameObject, 2f);
         }
     }
 
