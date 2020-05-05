@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
     [SerializeField] float jumpForce;
     [SerializeField] float moveSpeed;
 
+    [SerializeField] float impactModifier = 1;
+
     Rigidbody2D rb;
 
     bool hit = false;
@@ -29,7 +31,9 @@ public class Player : MonoBehaviour {
 
     private void Update () {
         if (Input.GetKeyDown (KeyCode.Space)) {
-            Jump ();
+            if (!hit && grounded) {
+                Jump ();
+            }
         }
     }
 
@@ -62,15 +66,15 @@ public class Player : MonoBehaviour {
 
             rb.freezeRotation = false;
             rb.velocity = Vector3.zero;
-            rb.AddForce (new Vector2 (-3.5f, 2.25f), ForceMode2D.Impulse);
-            rb.AddTorque (2, ForceMode2D.Impulse);
+            rb.AddForce (new Vector2 (-3.5f, 2.25f) * impactModifier, ForceMode2D.Impulse);
+            rb.AddTorque (2 * impactModifier, ForceMode2D.Impulse);
 
             StartCoroutine (Next ());
         }
     }
 
     IEnumerator Next () {
-        Destroy (gameObject, 1.5f);
+        Destroy (gameObject, 1.1f);
 
         yield return new WaitForSeconds (1f);
 
