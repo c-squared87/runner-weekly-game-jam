@@ -68,21 +68,25 @@ public class Player : MonoBehaviour {
         }
 
         if (other.collider.gameObject.tag == "Wall") {
-
-            FindObjectOfType<CameraFollow> ().ClearTarget ();
-
-            hit = true;
-
-            GenerateSplat ();
-
-            rb.freezeRotation = false;
-            rb.velocity = Vector3.zero;
-
-            rb.AddForce (new Vector2 (-3.5f, 2.25f) * impactModifier, ForceMode2D.Impulse);
-            rb.AddTorque (2 * impactModifier, ForceMode2D.Impulse);
-
-            StartCoroutine (Next ());
+            KillPlayer ();
         }
+    }
+
+    private void KillPlayer () {
+
+        FindObjectOfType<CameraFollow> ().ClearTarget ();
+
+        hit = true;
+
+        GenerateSplat ();
+
+        rb.freezeRotation = false;
+        rb.velocity = Vector3.zero;
+
+        rb.AddForce (new Vector2 (-3.5f, 2.25f) * impactModifier, ForceMode2D.Impulse);
+        rb.AddTorque (2 * impactModifier, ForceMode2D.Impulse);
+
+        StartCoroutine (Next ());
     }
 
     IEnumerator Next () {
