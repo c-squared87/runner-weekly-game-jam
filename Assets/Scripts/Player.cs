@@ -35,6 +35,13 @@ public class Player : MonoBehaviour {
                 Jump ();
             }
         }
+        if (Input.GetKeyDown (KeyCode.P)) {
+            if (Time.timeScale == 1) {
+                Time.timeScale = 0;
+            } else {
+                Time.timeScale = 1;
+            }
+        }
     }
 
     private void FixedUpdate () {
@@ -70,7 +77,7 @@ public class Player : MonoBehaviour {
 
             rb.freezeRotation = false;
             rb.velocity = Vector3.zero;
-            
+
             rb.AddForce (new Vector2 (-3.5f, 2.25f) * impactModifier, ForceMode2D.Impulse);
             rb.AddTorque (2 * impactModifier, ForceMode2D.Impulse);
 
