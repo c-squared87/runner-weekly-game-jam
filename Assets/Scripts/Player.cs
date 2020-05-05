@@ -87,5 +87,6 @@ public class Player : MonoBehaviour {
     void GenerateSplat () {
         int _rand = UnityEngine.Random.Range (0, splats.Length);
         Instantiate (splats[_rand], transform.position, Quaternion.identity);
+        EventsManager.PlayerHit ();
     }
 }
