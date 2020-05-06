@@ -15,7 +15,6 @@ public class GameButton : MonoBehaviour {
     }
 
     void LoadAScene () {
-        // Debug.Log ("I am going to load " + sceneToLoad);
         SceneManager.LoadScene (sceneToLoad);
     }
 }

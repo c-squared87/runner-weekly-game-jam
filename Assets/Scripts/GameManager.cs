@@ -4,8 +4,8 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager Instance;
 
-    public int totalHits;
-    public int hitsThisLevel;
+    int totalHits = 9;
+    int hitsThisLevel = 9;
 
     private void Start () {
 
@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour {
 
         DontDestroyOnLoad (this.gameObject);
 
-        ResetHitsCount ();
     }
 
     private void OnEnable () {
@@ -32,13 +31,23 @@ public class GameManager : MonoBehaviour {
         // hitsThisLevel = 0;
     }
 
-    private void AddHit () {
-        Debug.Log ("add hit called" + hitsThisLevel);
-        hitsThisLevel += 1;
+    private void Update () {
+        Debug.Log (HitsThisGame ());
     }
 
-    public void ResetHitsCount () {
-        totalHits = 0;
-        hitsThisLevel = 0;
+    private void AddHit () {
+        totalHits += 1;
+        hitsThisLevel += 1;
+
+    }
+
+    // public void ResetHitsCount () {
+    //     totalHits = 0;
+    //     hitsThisLevel = 0;
+    // }
+
+    public string HitsThisGame () {
+        Debug.Log ("hitstsss" + hitsThisLevel);
+        return totalHits.ToString ();
     }
 }
