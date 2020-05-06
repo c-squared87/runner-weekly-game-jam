@@ -7,6 +7,8 @@ public class FadePanel : MonoBehaviour {
     CanvasGroup thisGroup;
     Text labelText;
 
+    [SerializeField] bool fadeIn = false;
+
     [SerializeField] string labelTextOpening;
 
     private void Start () {
@@ -15,7 +17,12 @@ public class FadePanel : MonoBehaviour {
         labelText = GetComponentInChildren<Text> ();
 
         labelText.text = labelTextOpening;
-        StartCoroutine (FadeCanvasGroup (thisGroup, 1, 0, 1));
+
+        if (fadeIn) {
+            StartCoroutine (FadeCanvasGroup (thisGroup, 0, 1, 1));
+        } else {
+            StartCoroutine (FadeCanvasGroup (thisGroup, 1, 0, 1));
+        }
     }
 
     private void OnEnable () {
@@ -51,7 +58,7 @@ public class FadePanel : MonoBehaviour {
 
             yield return new WaitForEndOfFrame ();
         }
-        labelText.text = "";
+        if (!fadeIn) { labelText.text = ""; }
     }
 
     public IEnumerator FadeCanvasGroupOut (CanvasGroup canvasGroup, float start, float end, float length) {

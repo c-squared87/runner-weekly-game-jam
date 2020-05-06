@@ -3342,7 +3342,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4154,7 +4154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteOutImage: {fileID: 484043837}
   currentLevel: 0
-  nextLevelToLoad: MainMenu
+  nextLevelToLoad: GameEnd
 --- !u!4 &1361089721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8986199450941173057, guid: 3e67bdc1e16b647939eb7d9e929ba62d,
