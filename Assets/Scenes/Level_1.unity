@@ -3514,7 +3514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteOutImage: {fileID: 484043837}
   currentLevel: 0
-  nextLevelToLoad: Level_2
+  nextLevelToLoad: Level2
 --- !u!1 &1374429141
 GameObject:
   m_ObjectHideFlags: 0
