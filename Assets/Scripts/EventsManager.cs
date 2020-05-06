@@ -1,4 +1,6 @@
-﻿public static class EventsManager {
+﻿using UnityEngine;
+
+public static class EventsManager {
 
     public delegate void OnPlayerHit ();
     static event OnPlayerHit onPlayerHit;
@@ -27,6 +29,7 @@
     }
 
     public static void BroadcastMessage (string message) {
+        Debug.Log ("I am trying to broadcast " + message);
         if (onMessageBroadcast != null) {
             onMessageBroadcast (message);
         }
