@@ -16,7 +16,13 @@ public class Player : MonoBehaviour {
     Rigidbody2D rb;
 
     bool hit = false;
-    bool grounded;
+    bool canJump;
+    bool doubleJump;
+    // bool grounded;
+
+    bool isGrounded = false;
+    public Transform GroundCheck1; // Put the prefab of the ground here
+    public LayerMask groundLayer; // Insert the layer here.
 
     private void Start () {
         initLocation = transform.position;
@@ -31,7 +37,7 @@ public class Player : MonoBehaviour {
 
     private void Update () {
         if (Input.GetKeyDown (KeyCode.Space)) {
-            if (!hit && grounded) {
+            if (!hit && canJump) {
                 Jump ();
             }
         }
@@ -45,6 +51,14 @@ public class Player : MonoBehaviour {
     }
 
     private void FixedUpdate () {
+
+        isGrounded = Physics2D.OverlapCircle (GroundCheck1.position, 0.15f, groundLayer); // checks if you are within 0.15 position in the Y of the ground
+
+        if (isGrounded) {
+            canJump = true;
+            doubleJump = false;
+        }
+
         if (!hit) {
             Vector2 _vel = rb.velocity;
             _vel.x = 2 * moveSpeed;
@@ -59,9 +73,8 @@ public class Player : MonoBehaviour {
 
     private void OnCollisionEnter2D (Collision2D other) {
 
-        Debug.Log (other.collider.gameObject.layer);
+        // Debug.Log (other.collider.gameObject.layer);
         if (other.collider.gameObject.layer == 8) {
-            grounded = true;
             if (hit) {
                 GenerateSplat ();
             }
@@ -77,6 +90,8 @@ public class Player : MonoBehaviour {
         FindObjectOfType<CameraFollow> ().ClearTarget ();
 
         hit = true;
+
+        EventsManager.PlayerHit ();
 
         GenerateSplat ();
 
@@ -100,8 +115,22 @@ public class Player : MonoBehaviour {
         this.enabled = false;
     }
 
+    // TODO: I DONT KNOW THIS IS FUCKED UP SOMEHOW.
     void Jump () {
-        rb.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+        if (doubleJump == false) {
+            rb.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
+            // if (doubleJump) {
+            //     canJump = false;
+            // }
+            doubleJump = true;
+            Debug.Log ("Jump 1 called" + canJump + doubleJump);
+            return;
+        }
+        // Debug.Log ("Jump 2 called" + isGrounded + canJump + doubleJump);
+        // rb.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
+        // canJump = false;
+        // return;
     }
 
     void GenerateSplat () {
