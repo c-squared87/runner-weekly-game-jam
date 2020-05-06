@@ -29,9 +29,26 @@ public static class EventsManager {
     }
 
     public static void BroadcastMessage (string message) {
-        Debug.Log ("I am trying to broadcast " + message);
+        // Debug.Log ("I am trying to broadcast " + message);
         if (onMessageBroadcast != null) {
             onMessageBroadcast (message);
         }
     }
+
+    public delegate void OnLevelEnd ();
+    static event OnLevelEnd onLevelEnd;
+
+    public static void ADD_OnLevelEndListener (EventsManager.OnLevelEnd _method) {
+        onLevelEnd += _method;
+    }
+    public static void REMOVE_OnLevelEndListener (EventsManager.OnLevelEnd _method) {
+        onLevelEnd -= _method;
+    }
+
+    public static void LevelEnd () {
+        if (onLevelEnd != null) {
+            onLevelEnd ();
+        }
+    }
+
 }

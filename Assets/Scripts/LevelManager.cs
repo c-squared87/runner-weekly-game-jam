@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
@@ -13,24 +11,19 @@ public class LevelManager : MonoBehaviour {
 
     void Start () {
 
-        // whiteOutImage = GetComponent<CanvasGroup> ();
-        // Time.timeScale = 1;
-        // whiteOutImage.color = new Color (28, 0, 0, 0.1f);
         StartCoroutine (FadeCanvasGroup (whiteOutImage, 1, 0, 1));
     }
 
-    private void Update () {
-        // whiteOutImage.CrossFadeAlpha (1.0f, 2f, true);
+    private void OnEnable () {
+        EventsManager.ADD_OnLevelEndListener (EndLevel);
+    }
+    private void OnDisable () {
+        EventsManager.REMOVE_OnLevelEndListener (EndLevel);
     }
 
-    public void EndLevel () {
+    void EndLevel () {
         StartCoroutine (FadeCanvasGroupOut (whiteOutImage, 0, 1, 1));
     }
-
-    // IEnumerator EndLevelSequence () {
-    //     whiteOutImage.CrossFadeAlpha (1.0f, 2f, true);
-    //     // yield return null;
-    // }
 
     public IEnumerator FadeCanvasGroup (CanvasGroup canvasGroup, float start, float end, float length) {
 
@@ -53,7 +46,6 @@ public class LevelManager : MonoBehaviour {
 
             yield return new WaitForEndOfFrame ();
         }
-        Debug.Log ("done");
     }
     public IEnumerator FadeCanvasGroupOut (CanvasGroup canvasGroup, float start, float end, float length) {
 
@@ -76,7 +68,6 @@ public class LevelManager : MonoBehaviour {
 
             yield return new WaitForEndOfFrame ();
         }
-        // Debug.Log ("done");
         SceneManager.LoadScene (nextLevelToLoad);
     }
 }

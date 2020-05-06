@@ -12,13 +12,13 @@ public class MainMessageField : MonoBehaviour {
         EventsManager.ADD_MessageBroadcastListener (UpdateUI);
         UpdateUI ("");
     }
-    
+
     private void OnDisable () {
         EventsManager.REMOVE_MessageBroadcastListener (UpdateUI);
     }
 
     private void UpdateUI (string message) {
-        Debug.Log (message);
+        // Debug.Log (message);
         StopCoroutine ("ClearMessage");
         if (text == null) { text = GetComponent<Text> (); }
         text.text = message;

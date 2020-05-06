@@ -6,8 +6,8 @@ public class Exit : MonoBehaviour {
 
     private void OnTriggerEnter2D (Collider2D other) {
         if (other.tag == "Player") {
-            FindObjectOfType<LevelManager> ().EndLevel ();
-
+            // FindObjectOfType<LevelManager> ().EndLevel ();
+            EventsManager.LevelEnd ();
             //TODO: LEVEL END EVENT - TRIGGERS PLAYTER ACTIONS TOO - FLY AWAY?
         }
     }
