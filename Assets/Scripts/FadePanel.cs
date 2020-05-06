@@ -1,28 +1,33 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class LevelManager : MonoBehaviour {
+public class FadePanel : MonoBehaviour {
 
-    public CanvasGroup whiteOutImage;
+    CanvasGroup thisGroup;
+    Text labelText;
 
-    public int currentLevel;
-    [SerializeField] string nextLevelToLoad;
+    [SerializeField] string labelTextOpening;
 
-    void Start () {
-        Time.timeScale = 1;
+    private void Start () {
+        thisGroup = GetComponent<CanvasGroup> ();
+
+        labelText = GetComponentInChildren<Text> ();
+
+        labelText.text = labelTextOpening;
+        StartCoroutine (FadeCanvasGroup (thisGroup, 1, 0, 1));
     }
 
     private void OnEnable () {
         EventsManager.ADD_OnLevelEndListener (EndLevel);
     }
+
     private void OnDisable () {
         EventsManager.REMOVE_OnLevelEndListener (EndLevel);
     }
 
     void EndLevel () {
-        // Time.timeScale = 0;
-        StartCoroutine (LoadNext (1));
+        StartCoroutine (FadeCanvasGroupOut (thisGroup, 0, 1, 1));
     }
 
     public IEnumerator FadeCanvasGroup (CanvasGroup canvasGroup, float start, float end, float length) {
@@ -46,13 +51,9 @@ public class LevelManager : MonoBehaviour {
 
             yield return new WaitForEndOfFrame ();
         }
+        labelText.text = "";
     }
 
-    IEnumerator LoadNext (float time) {
-        yield return new WaitForSeconds (time);
-        SceneManager.LoadScene (nextLevelToLoad);
-
-    }
     public IEnumerator FadeCanvasGroupOut (CanvasGroup canvasGroup, float start, float end, float length) {
 
         float _timeStartedLerp = Time.time;
@@ -74,6 +75,6 @@ public class LevelManager : MonoBehaviour {
 
             yield return new WaitForEndOfFrame ();
         }
-        SceneManager.LoadScene (nextLevelToLoad);
+        // SceneManager.LoadScene (nextLevelToLoad);
     }
 }
