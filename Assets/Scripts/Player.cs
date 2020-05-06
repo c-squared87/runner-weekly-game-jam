@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,7 +33,21 @@ public class Player : MonoBehaviour {
     }
 
     private void OnEnable () {
+
         FindObjectOfType<CameraFollow> ().SetTarget (this);
+
+        EventsManager.ADD_OnLevelEndListener (EndLevel);
+    }
+
+    private void OnDisable () {
+        EventsManager.REMOVE_OnLevelEndListener (EndLevel);
+    }
+
+    private void EndLevel () {
+        Debug.Log ("end called from player");
+        rb.velocity = Vector3.zero;
+        rb.gravityScale = 0;
+        this.enabled = false;
     }
 
     private void Update () {
@@ -73,7 +88,6 @@ public class Player : MonoBehaviour {
 
     private void OnCollisionEnter2D (Collision2D other) {
 
-        // Debug.Log (other.collider.gameObject.layer);
         if (other.collider.gameObject.layer == 8) {
             if (hit) {
                 GenerateSplat ();
@@ -81,7 +95,10 @@ public class Player : MonoBehaviour {
         }
 
         if (other.collider.gameObject.tag == "Wall") {
-            KillPlayer ();
+            if (!hit) {
+                EventsManager.PlayerHit ();
+                KillPlayer ();
+            }
         }
     }
 
@@ -90,8 +107,6 @@ public class Player : MonoBehaviour {
         FindObjectOfType<CameraFollow> ().ClearTarget ();
 
         hit = true;
-
-        EventsManager.PlayerHit ();
 
         GenerateSplat ();
 
@@ -105,14 +120,14 @@ public class Player : MonoBehaviour {
     }
 
     IEnumerator Next () {
-        Destroy (gameObject, 1.1f);
-
         yield return new WaitForSeconds (1f);
 
         GameObject _player_clone = Instantiate (player_prefab, initLocation, Quaternion.Euler (Vector3.zero));
         _player_clone.name = "Player";
 
         this.enabled = false;
+
+        Destroy (gameObject);
     }
 
     // TODO: I DONT KNOW THIS IS FUCKED UP SOMEHOW.
@@ -136,6 +151,6 @@ public class Player : MonoBehaviour {
     void GenerateSplat () {
         int _rand = UnityEngine.Random.Range (0, splats.Length);
         Instantiate (splats[_rand], transform.position, Quaternion.identity);
-        EventsManager.PlayerHit ();
+        // EventsManager.PlayerHit ();
     }
 }

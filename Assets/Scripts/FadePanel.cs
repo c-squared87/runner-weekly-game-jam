@@ -56,6 +56,8 @@ public class FadePanel : MonoBehaviour {
 
     public IEnumerator FadeCanvasGroupOut (CanvasGroup canvasGroup, float start, float end, float length) {
 
+        labelText.text = "Killed " + FindObjectOfType<GameManager> ().hitsThisLevel.ToString () + " Times. Good Job.";
+
         float _timeStartedLerp = Time.time;
         float timeSinceStarted = Time.time - _timeStartedLerp;
         float _percentageComplete = timeSinceStarted / length;

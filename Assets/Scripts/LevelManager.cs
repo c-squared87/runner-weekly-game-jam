@@ -21,31 +21,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void EndLevel () {
-        // Time.timeScale = 0;
-        StartCoroutine (LoadNext (1));
-    }
-
-    public IEnumerator FadeCanvasGroup (CanvasGroup canvasGroup, float start, float end, float length) {
-
-        float _timeStartedLerp = Time.time;
-        float timeSinceStarted = Time.time - _timeStartedLerp;
-        float _percentageComplete = timeSinceStarted / length;
-
-        while (true) {
-
-            timeSinceStarted = Time.time - _timeStartedLerp;
-            _percentageComplete = timeSinceStarted / length;
-
-            float currentValue = Mathf.Lerp (start, end, _percentageComplete);
-
-            canvasGroup.alpha = currentValue;
-
-            if (_percentageComplete >= 1) {
-                break;
-            }
-
-            yield return new WaitForEndOfFrame ();
-        }
+        StartCoroutine (LoadNext (3));
     }
 
     IEnumerator LoadNext (float time) {
@@ -53,27 +29,51 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene (nextLevelToLoad);
 
     }
-    public IEnumerator FadeCanvasGroupOut (CanvasGroup canvasGroup, float start, float end, float length) {
+    
+    // public IEnumerator FadeCanvasGroup (CanvasGroup canvasGroup, float start, float end, float length) {
 
-        float _timeStartedLerp = Time.time;
-        float timeSinceStarted = Time.time - _timeStartedLerp;
-        float _percentageComplete = timeSinceStarted / length;
+    //     float _timeStartedLerp = Time.time;
+    //     float timeSinceStarted = Time.time - _timeStartedLerp;
+    //     float _percentageComplete = timeSinceStarted / length;
 
-        while (true) {
+    //     while (true) {
 
-            timeSinceStarted = Time.time - _timeStartedLerp;
-            _percentageComplete = timeSinceStarted / length;
+    //         timeSinceStarted = Time.time - _timeStartedLerp;
+    //         _percentageComplete = timeSinceStarted / length;
 
-            float currentValue = Mathf.Lerp (start, end, _percentageComplete);
+    //         float currentValue = Mathf.Lerp (start, end, _percentageComplete);
 
-            canvasGroup.alpha = currentValue;
+    //         canvasGroup.alpha = currentValue;
 
-            if (_percentageComplete >= 1) {
-                break;
-            }
+    //         if (_percentageComplete >= 1) {
+    //             break;
+    //         }
 
-            yield return new WaitForEndOfFrame ();
-        }
-        SceneManager.LoadScene (nextLevelToLoad);
-    }
+    //         yield return new WaitForEndOfFrame ();
+    //     }
+    // }
+
+    // public IEnumerator FadeCanvasGroupOut (CanvasGroup canvasGroup, float start, float end, float length) {
+
+    //     float _timeStartedLerp = Time.time;
+    //     float timeSinceStarted = Time.time - _timeStartedLerp;
+    //     float _percentageComplete = timeSinceStarted / length;
+
+    //     while (true) {
+
+    //         timeSinceStarted = Time.time - _timeStartedLerp;
+    //         _percentageComplete = timeSinceStarted / length;
+
+    //         float currentValue = Mathf.Lerp (start, end, _percentageComplete);
+
+    //         canvasGroup.alpha = currentValue;
+
+    //         if (_percentageComplete >= 1) {
+    //             break;
+    //         }
+
+    //         yield return new WaitForEndOfFrame ();
+    //     }
+    //     SceneManager.LoadScene (nextLevelToLoad);
+    // }
 }
