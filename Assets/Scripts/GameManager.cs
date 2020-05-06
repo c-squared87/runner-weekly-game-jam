@@ -4,8 +4,8 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager Instance;
 
-    int totalHits = 9;
-    int hitsThisLevel = 9;
+    int totalHits = 0;
+    int hitsThisLevel = 0;
 
     private void Start () {
 
@@ -31,23 +31,17 @@ public class GameManager : MonoBehaviour {
         // hitsThisLevel = 0;
     }
 
-    private void Update () {
-        Debug.Log (HitsThisGame ());
-    }
-
     private void AddHit () {
         totalHits += 1;
         hitsThisLevel += 1;
-
     }
 
-    // public void ResetHitsCount () {
-    //     totalHits = 0;
-    //     hitsThisLevel = 0;
-    // }
+    public void ResetHitsCount () {
+        totalHits = 0;
+        hitsThisLevel = 0;
+    }
 
     public string HitsThisGame () {
-        Debug.Log ("hitstsss" + hitsThisLevel);
         return totalHits.ToString ();
     }
 }
