@@ -54,28 +54,28 @@ MonoBehaviour:
   - Source: {fileID: 0}
     Name: Impact1
     Clip: {fileID: 8300000, guid: f78eeb575526d4164aedb601b8b580dc, type: 3}
-    Volume: 0.68
+    Volume: 0.2
     Pitch: 1
     Reverb: 0
     Loop: 0
   - Source: {fileID: 0}
     Name: Impact2
-    Clip: {fileID: 8300000, guid: 944e710f27213443695edb2d6c03bb96, type: 3}
-    Volume: 0
+    Clip: {fileID: 8300000, guid: 402792c1174f344f99b6a9e11d01464e, type: 3}
+    Volume: 0.38
     Pitch: 1
     Reverb: 0
     Loop: 0
   - Source: {fileID: 0}
     Name: Impact3
     Clip: {fileID: 8300000, guid: 6a6055069f0874fb7aa421831c7293ef, type: 3}
-    Volume: 1
+    Volume: 0.44
     Pitch: 1
     Reverb: 0
     Loop: 0
   - Source: {fileID: 0}
     Name: Impact4
-    Clip: {fileID: 8300000, guid: cc7a29d5af53e4b24a9b54465c96f053, type: 3}
-    Volume: 1
+    Clip: {fileID: 8300000, guid: 6a6055069f0874fb7aa421831c7293ef, type: 3}
+    Volume: 0.53
     Pitch: 1
     Reverb: 0
     Loop: 0

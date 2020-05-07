@@ -544,6 +544,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WhiteoutPane
       objectReference: {fileID: 0}
+    - target: {fileID: 3040851227127786876, guid: a2dec25f036f344baa4e0a0a7a445e86,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2dec25f036f344baa4e0a0a7a445e86, type: 3}
 --- !u!224 &134886896 stripped
@@ -570,6 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86dbd51ed7cb46d09addf583724ddf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeIn: 0
   labelTextOpening: Hell there!
 --- !u!1 &160019473
 GameObject:

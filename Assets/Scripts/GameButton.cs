@@ -9,12 +9,24 @@ public class GameButton : MonoBehaviour {
 
     Button thisButton;
 
+    [SerializeField] bool quitButton = false;
+
     private void Start () {
         thisButton = GetComponent<Button> ();
+
+        if (quitButton) {
+            thisButton.onClick.AddListener (doExitGame);
+            return;
+        }
+
         thisButton.onClick.AddListener (LoadAScene);
     }
 
     void LoadAScene () {
         SceneManager.LoadScene (sceneToLoad);
+    }
+
+    void doExitGame () {
+        Application.Quit ();
     }
 }

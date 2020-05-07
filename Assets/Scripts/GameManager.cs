@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager Instance;
 
-    int totalHits = 0;
+    public int totalHits = 0;
     int hitsThisLevel = 0;
 
     private void Start () {
@@ -26,20 +26,20 @@ public class GameManager : MonoBehaviour {
         // EventsManager.REMOVE_OnLevelEndListener (EndLevel);
     }
 
-    private void EndLevel () {
-        totalHits += hitsThisLevel;
-        // hitsThisLevel = 0;
-    }
+    // private void EndLevel () {
+    //     totalHits += hitsThisLevel;
+    //     // hitsThisLevel = 0;
+    // }
 
     private void AddHit () {
         totalHits += 1;
         hitsThisLevel += 1;
     }
 
-    public void ResetHitsCount () {
-        totalHits = 0;
-        hitsThisLevel = 0;
-    }
+    // public void ResetHitsCount () {
+    //     totalHits = 0;
+    //     hitsThisLevel = 0;
+    // }
 
     public string HitsThisGame () {
         return totalHits.ToString ();

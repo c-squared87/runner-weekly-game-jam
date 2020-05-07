@@ -40,7 +40,9 @@ public class AudioManager : MonoBehaviour {
     private void PlayerHitSound () {
 
         Sound _s = Array.Find (sounds, sound => sound.Name == "Impact1");
-        Sound _s2 = Array.Find (sounds, sound => sound.Name == "Impact3");
+        Sound _s2 = Array.Find (sounds, sound => sound.Name == "Impact2");
+        Sound _s3 = Array.Find (sounds, sound => sound.Name == "Impact3");
+        Sound _s4 = Array.Find (sounds, sound => sound.Name == "Impact4");
 
         if (_s == null) {
             Debug.LogWarning ("Sound " + "Impact" + " Was Not Found.");
@@ -48,5 +50,7 @@ public class AudioManager : MonoBehaviour {
         }
         _s.Source.Play ();
         _s2.Source.Play ();
+        _s3.Source.Play ();
+        _s4.Source.Play ();
     }
 }
