@@ -27,6 +27,5 @@ public class LevelManager : MonoBehaviour {
     IEnumerator LoadNext (float time) {
         yield return new WaitForSeconds (time);
         SceneManager.LoadScene (nextLevelToLoad);
-
     }
 }
