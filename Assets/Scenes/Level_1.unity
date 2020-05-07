@@ -3866,6 +3866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x_offset: 4
   y_offset: 0
+  x_Limit: 49
   moveSpeed: 20
 --- !u!1001 &948872391
 PrefabInstance:

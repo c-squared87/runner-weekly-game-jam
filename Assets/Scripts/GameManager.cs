@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour {
     public int totalHits = 0;
     int hitsThisLevel = 0;
 
+    void Awake () {
+        Screen.SetResolution (800, 600, false);
+    }
+
     private void Start () {
 
         if (Instance == null) { Instance = this; }
