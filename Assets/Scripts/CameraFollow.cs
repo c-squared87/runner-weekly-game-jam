@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour {
     Player target;
 
     [SerializeField] float x_offset;
-    [SerializeField] float y_offset;
+    // [SerializeField] float y_offset;
 
     [SerializeField] float x_Limit;
 
@@ -32,7 +32,7 @@ public class CameraFollow : MonoBehaviour {
         }
 
         _pos.z = -10;
-        _pos.y = y_offset;
+        _pos.y = 0;
         _pos.x += x_offset;
 
         if (_pos.x > x_Limit) {

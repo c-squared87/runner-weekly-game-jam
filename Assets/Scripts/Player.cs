@@ -44,7 +44,6 @@ public class Player : MonoBehaviour {
     }
 
     private void EndLevel () {
-        Debug.Log ("end called from player");
         rb.velocity = Vector3.zero;
         rb.gravityScale = 0;
         this.enabled = false;
@@ -139,7 +138,7 @@ public class Player : MonoBehaviour {
             //     canJump = false;
             // }
             doubleJump = true;
-            Debug.Log ("Jump 1 called" + canJump + doubleJump);
+            // Debug.Log ("Jump 1 called" + canJump + doubleJump);
             return;
         }
         // Debug.Log ("Jump 2 called" + isGrounded + canJump + doubleJump);

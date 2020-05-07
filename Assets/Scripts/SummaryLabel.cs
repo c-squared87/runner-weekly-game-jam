@@ -8,7 +8,9 @@ public class SummaryLabel : MonoBehaviour {
     void Start () {
         text = GetComponent<Text> ();
 
-        text.text = "You died " + FindObjectOfType<GameManager> ().totalHits.ToString () + " times";
+        // string _text = FindObjectOfType<GameManager> ().HitsThisGame ();
+
+        text.text = "You died " + ScoreManager.TotalHitsThisGame () + " times";
 
         // FindObjectOfType<GameManager> ().ResetHitsCount ();
     }

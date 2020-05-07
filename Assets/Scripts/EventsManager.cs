@@ -16,6 +16,7 @@ public static class EventsManager {
 
         if (onPlayerHit != null) {
             // Debug.Log ("hit");
+            ScoreManager.PlayerHit ();
             onPlayerHit ();
         }
     }

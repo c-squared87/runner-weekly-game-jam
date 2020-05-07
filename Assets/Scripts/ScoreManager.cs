@@ -15,4 +15,8 @@ public static class ScoreManager {
     public static void PlayerHit () {
         totalHits++;
     }
+
+    public static string TotalHitsThisGame () {
+        return totalHits.ToString ();
+    }
 }

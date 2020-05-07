@@ -4,8 +4,8 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager Instance;
 
-    public int totalHits = 0;
-    int hitsThisLevel = 0;
+    int totalHits;
+    int hitsThisLevel;
 
     void Awake () {
         Screen.SetResolution (800, 600, false);
@@ -16,8 +16,7 @@ public class GameManager : MonoBehaviour {
         if (Instance == null) { Instance = this; }
         if (Instance != this) { Destroy (gameObject); return; }
 
-        DontDestroyOnLoad (this.gameObject);
-
+        DontDestroyOnLoad (this);
     }
 
     private void OnEnable () {
@@ -46,6 +45,7 @@ public class GameManager : MonoBehaviour {
     // }
 
     public string HitsThisGame () {
-        return totalHits.ToString ();
+        Debug.Log ("hits called and it is " + hitsThisLevel);
+        return hitsThisLevel.ToString ();
     }
 }

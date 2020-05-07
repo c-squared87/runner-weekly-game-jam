@@ -63,7 +63,7 @@ public class FadePanel : MonoBehaviour {
 
     public IEnumerator FadeCanvasGroupOut (CanvasGroup canvasGroup, float start, float end, float length) {
 
-        labelText.text = "Killed " + FindObjectOfType<GameManager> ().HitsThisGame () + " Times So Far. Good Job.";
+        labelText.text = "Died " + FindObjectOfType<GameManager> ().HitsThisGame () + " Times So Far. Good Job.";
 
         float _timeStartedLerp = Time.time;
         float timeSinceStarted = Time.time - _timeStartedLerp;
