@@ -1,13 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class Exit : MonoBehaviour {
+
+    [SerializeField] string sceneToLoad;
+
     private void OnTriggerEnter2D (Collider2D other) {
-        Debug.Log("ding");
-        if(other.tag == "Player"){
-            SceneManager.LoadScene("TestLevel");
+        if (other.tag == "Player") {
+            // FindObjectOfType<LevelManager> ().EndLevel ();
+            EventsManager.LevelEnd ();
+            //TODO: LEVEL END EVENT - TRIGGERS PLAYTER ACTIONS TOO - FLY AWAY?
         }
     }
+
 }
+
+/*
+           When player triggers the exit,
+            we need to show an end level screen, and 
+            give options for the player to go to the next level, 
+           */

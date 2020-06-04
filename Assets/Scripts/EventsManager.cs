@@ -13,8 +13,45 @@ public static class EventsManager {
     }
 
     public static void PlayerHit () {
+
         if (onPlayerHit != null) {
+            // Debug.Log ("hit");
+            ScoreManager.PlayerHit ();
             onPlayerHit ();
         }
     }
+
+    public delegate void OnMessageBroadcast (string message);
+    static event OnMessageBroadcast onMessageBroadcast;
+
+    public static void ADD_MessageBroadcastListener (EventsManager.OnMessageBroadcast _method) {
+        onMessageBroadcast += _method;
+    }
+    public static void REMOVE_MessageBroadcastListener (EventsManager.OnMessageBroadcast _method) {
+        onMessageBroadcast -= _method;
+    }
+
+    public static void BroadcastMessage (string message) {
+        // Debug.Log ("I am trying to broadcast " + message);
+        if (onMessageBroadcast != null) {
+            onMessageBroadcast (message);
+        }
+    }
+
+    public delegate void OnLevelEnd ();
+    static event OnLevelEnd onLevelEnd;
+
+    public static void ADD_OnLevelEndListener (EventsManager.OnLevelEnd _method) {
+        onLevelEnd += _method;
+    }
+    public static void REMOVE_OnLevelEndListener (EventsManager.OnLevelEnd _method) {
+        onLevelEnd -= _method;
+    }
+
+    public static void LevelEnd () {
+        if (onLevelEnd != null) {
+            onLevelEnd ();
+        }
+    }
+
 }
