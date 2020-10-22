@@ -1,10 +1,9 @@
-# runner-weekly-game-jam
+#Entry for Weekly Game Jam Week 147
+#Theme, Invisible
 
-This is an archive of the source behind my game Blood Run on itch.io. 
+##Project Takeaways:
 
-Created in my spare time 4 days for Weekly Game Jam with the theme Invisible, so please excuse the mess.
-
-
+- **Testing is key.** I ended up publishing this project under the working title since my last build didn't work. Oops.
 
 Play it here:
 https://csquared44.itch.io/blood-run
