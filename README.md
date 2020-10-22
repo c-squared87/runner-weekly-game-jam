@@ -1,5 +1,5 @@
-#Entry for Weekly Game Jam Week 147
-#Theme, Invisible
+# Entry for Weekly Game Jam Week 147
+# Theme, Invisible
 
 ##Project Takeaways:
 
